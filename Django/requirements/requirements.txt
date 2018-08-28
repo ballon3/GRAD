@@ -1,0 +1,11 @@
+Django
+django-cors-headers
+django-filter
+graphene-django
+graphql-core
+graphql-relay
+ipdb
+
+djangorestframework
+djangorestframework-jwt
+django-cors-headers
