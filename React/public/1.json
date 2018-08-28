@@ -1,0 +1,128 @@
+{
+  "main": {
+    "name":"Ryan Brown",
+    "occupation":"Full Stack Developer + Machine Learning Researcher",
+    "description":"Hello World.",
+    "image":"profilepic.jpg",
+    "bio":"I am a French Photographer and I have worked in PhotoJournalism now for 15 years. I have had the opportunity to travel the world and document some of the most important events in history",
+    "email": "ryan393brown@gmail.com",
+    "phone": "541-598-4004",
+    "address":{
+      "street":"886 Blackberry ln",
+      "city":"Ashland",
+      "state":"Oregon",
+      "zip": "97520"
+    },
+    
+    "resumedownload":"#",
+    "social":[
+      {
+        "name":"linkedin",
+        "url":"https://www.linkedin.com/in/ryan-brown-4476aa116/",
+        "className":"fa fa-linkedin"
+      },
+      {
+        "name":"instagram",
+        "url":"http://instagram.com",
+        "className":"fa fa-instagram"
+      },
+      {
+        "name":"github",
+        "url":"http://github.com",
+        "className":"fa fa-github"
+      },
+      {
+        "name":"skype",
+        "url":"http://skype.com",
+        "className":"fa fa-skype"
+      }
+    ]
+  },
+  "resume":{
+    "education":[
+      {
+        "school":"Hack Oregon's Civic University",
+        "degree":"Bachelor",
+        "graduated":"December 2017",
+        "description":"."
+      }
+    ],
+    "work":[
+      {
+        "company":"55B",
+        "title":"3D Technician + Fullstack Development ",
+        "years":"June 15 - present",
+        "description":"Primarily conducting Machine Learning research and iteration on model development for computer vision and nlp tasks."
+      },
+      {
+        "company":"Zonerise, Phoenix AZ",
+        "title":"Cofounder + Fullstack Development",
+        "years":"May 2017 - June 2018",
+        "description":"Full stack development for 3d BIM and Mixed reality portal. The Backend api is interacting with autodesk forge’s api for data management, asset storage, format conversion methods, and primarily a 3d viewport for all your BIM projects. I have developed a Django DRF  backend that allocates management capabilities of all your 3d projects, aprx 60 file formats can be handled for a variety of 3d file types  for upload , base64 encoding, and delivery to a react frontend."
+      },
+      {
+        "company":"Digital Scan 3D, Portland OR",
+        "title":"3D Scanning Technician and RnD specialist.",
+        "years":"February 2017 - November 2017",
+        "description":"3D Scanning Specialist focused on using a variety of 3d scanners and types of data acquisition software. Primary focus on Artec Handheld scanners, and solutionX for scanning services oriented in design, manufacturing and prototyping. Point cloud processing included, cleaning, mesh creation, and texture mapping.  I am proficient in countless 3d softwares for Reverse engineering, QC/QA, lighting, rigging, and texturing."
+      }
+    ],
+    "skills":[
+      {
+        "name":"Python (Django + RestFramework)",
+        "level":"80%"
+      },
+      {
+        "name":"Javascript (React + Redux)",
+        "level":"50%"
+      },
+      {
+        "name":"Graphql (for data layer interaction)",
+        "level":"30%"
+      },
+      {
+        "name":"API Development",
+        "level":"60%"
+      },
+      {
+        "name":"Education",
+        "level":"50%"
+      }
+      
+    ]
+  },
+  "portfolio":{
+    "projects": [
+      {
+        "title":"Civic Platform",
+        "description":"We’re reimagining how to make information actionable through visual models, open standards, and creative frameworks that harness human collaboration at scale.",
+        "category":"Django + React Dev",
+        "tags":"Django API Development, React UI/UX",
+        "image":"civic2.svg",
+        "url":"http://civicplatform.org/",
+        "modal":"#modal-02"
+      },
+      {
+        "title":"Judah",
+        "description":"A professional photoshoot for a cosmetic company. Advanced Photoshop retouching.",
+        "category":"Photoshop, Photography",
+        "tags":"Branding, Photography",
+        "image":"judah.jpg",
+        "url":"http://port3.com",
+        "modal":"#modal-03"
+      }
+    ]
+  },
+  "testimonials":{
+    "testimonials":[
+      {
+        "text":"We used Henri to take images on our behalf for a recent multi-million pound project. He completely understood the brief and his shots were well taken, striking and wonderfully framed. Henri is a punctual, polite and trustworthy individual who I wouldn’t hesitate to recommend to others as we will definitely be using him for future projects. He is a pleasure to work with.",
+        "user":"Laura Evans"
+      },
+      {
+        "text":"We approached Henri with an 11th hour request to photograph a building we had just re-branded. We were on a very tight deadline to produce the promotional material, ready for a launch party the following week. Henri was incredibly accommodating, and made himself available for the following day The photographs were excellent and met with the client’s approval, so much so that he also became the photographer for the launch event! Henri is highly personable and professional and I have no hesitation in recommending him.",
+        "user":"Steven Lauder (Director)"
+      }
+    ]
+  }
+}
