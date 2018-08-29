@@ -1,7 +1,7 @@
 from django.db import models
 
-class Data(models.Model):
-    name = "Packet"
+class Pkg(models.Model):
+    name = "Pkg"
     main = models.ForeignKey('Main', on_delete=models.CASCADE)
     resume = models.ForeignKey('Resume', on_delete=models.CASCADE, null=True)
     portfolio = models.ManyToManyField('Project')

@@ -2,11 +2,11 @@ import graphene
 
 from graphene_django.types import DjangoObjectType
 
-from ballon.models import Data, Resume, Main, Education, Testimonial, Address, Social, Work, Skill, Project  
+from ballon.models import Pkg, Resume, Main, Education, Testimonial, Address, Social, Work, Skill, Project  
 
-class DataType(DjangoObjectType):
+class PkgType(DjangoObjectType):
     class Meta:
-        model = Data
+        model = Pkg
 
 class ResumeType(DjangoObjectType):
     class Meta:
@@ -49,7 +49,7 @@ class Query(graphene.AbstractType):
     
     #all_main = graphene.List(MainType)
     all_resume = graphene.List(ResumeType)
-    all_data = graphene.List(DataType)
+    all_pkg = graphene.List(PkgType)
     
     #all_work = graphene.List(WorkType)
     #all_education = graphene.List(EducationType)
@@ -58,18 +58,18 @@ class Query(graphene.AbstractType):
     #all_social = graphene.List(SocialType)
 
     resume = graphene.Field(ResumeType, id=graphene.ID())
-    data = graphene.Field(DataType, id=graphene.ID())
+    pkg = graphene.Field(PkgType, id=graphene.ID())
  
-    def resolve_data(self, *args, **kwargs):
+    def resolve_pkg(self, *args, **kwargs):
         id = kwargs.get('id')
         
         if id is not None:
-            return Data.objects.get(pk=id)
+            return Pkg.objects.get(pk=id)
 
         return None
     
-    def resolve_all_Data(self, args):
-        return Data.objects.all()
+    def resolve_all_pkg(self, args):
+        return Pkg.objects.all()
 
     def resolve_resume(self, *args, **kwargs):
         id = args.get('id')

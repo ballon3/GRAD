@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 import './App.css';
 import Header from './Components/Header';
-import About from './Components/About';
 import Resume from './Components/Resume';
-import Portfolio from './Components/Portfolio';
-import Testimonials from './Components/Testimonials';
-import Contact from './Components/Contact';
 import Footer from './Components/Footer';
-import {main,portfolio,resume,testimonials} from '../public/resumeData'
+
+import { gql, graphql } from 'react-apollo';
 import {
   ApolloProvider,
   ApolloClient,
   createBatchingNetworkInterface,
-} from 'react-apollo'
+} from 'react-apollo';
 
 const networkInterface = createBatchingNetworkInterface({
   uri: 'http://localhost:8000/gql',
@@ -23,39 +19,91 @@ const networkInterface = createBatchingNetworkInterface({
   },
 })
 
+const client = new ApolloClient ({
+  networkInterface: networkInterface,
+})
 
-class App extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
+const query = gql`
+query {
+  pkg(id: 1) {
+    main {
+      name
+      occupation
+      description
+      image
+      bio
+      email
+      phone
+      address {
+        city
+        state
+        street
+      },
       
-      resumeData:{
-        main: main,
-        portfolio: portfolio,
-        resume: resume,
-        testimonials: testimonials
-      }
+      
+    },
+    resume {
+      education {
+        school
+        degree
+        graduted
+        description
+      },
+      works {
+        company
+        title
+        years
+        description
+      },
+      
+    },
+    portfolio {
+      title
+      description
+      category
+      tags
+      image
+      url
+    },
+    testimonials {
+      text
+      user
     }
   }
+}`
 
-
-
+class App extends Component {
 
   render() {
-    console.log(main);
+    let {data} = this.props
+    if (data.loading) { return <div>Loading..</div> }
+    
     return (
-      <div className="App">
-        <Header data={main} />
-        <About data={this.state.resumeData.main} />
-        <Resume data={this.state.resumeData.resume} />
-        <Portfolio data={this.state.resumeData.portfolio} />
-        <Testimonials data={this.state.resumeData.testimonials} />
-        <Contact data={this.state.resumeData.main} />
-        <Footer />
-      </div>
+
+      <ApolloProvider client={client}>
+        
+          <div className="App">
+            <Header data={data.pkg.main} />
+            <Resume data={data.pkg.resume} />
+            
+            <Footer />
+          </div>
+        
+
+        
+      </ApolloProvider>
+    
     );
   }
 }
 
+const queryOptions = {
+  options: props => ({
+    variables: {
+      id: props.match.params.id,
+    },
+  }),
+}
+
+App = graphql(query, queryOptions)(App)
 export default App;
