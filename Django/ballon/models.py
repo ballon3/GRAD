@@ -1,22 +1,25 @@
 from django.db import models
 
+class Data(models.Model):
+    name = "Packet"
+    main = models.ForeignKey('Main', on_delete=models.CASCADE)
+    resume = models.ForeignKey('Resume', on_delete=models.CASCADE, null=True)
+    portfolio = models.ManyToManyField('Project')
+    testimonials = models.ManyToManyField('Testimonial')
+    
+    def __str__(self):
+        return self.name
 
 class Resume(models.Model):
-
-    name = models.CharField(max_length=400, blank=True)
-    main = models.ForeignKey('Main', on_delete=models.CASCADE, null=True)
-    social = models.ManyToManyField('Social')
+    name = "Resume"
     education = models.ManyToManyField('Education')
     works = models.ManyToManyField('Work')
-    projects = models.ManyToManyField("Project")
-    testimonials = models.ManyToManyField("Testimonial")
-
+   # skill = models.ManyToManyField('Skill')
+    
 
     def __str__(self):
         return self.name
         
-        
-
 class Address(models.Model):
 
     street = models.CharField(max_length=800)
@@ -44,6 +47,7 @@ class Main(models.Model):
     email = models.EmailField((""), max_length=254)  
     phone = models.CharField(max_length=100)
     address = models.ForeignKey('Address', on_delete=models.CASCADE, null=True)
+  #  social = models.ManyToManyField('Social')
 
     def __str__(self):
         return self.name
@@ -103,13 +107,9 @@ class Skill(models.Model):
 
     class Meta:
         verbose_name = ("Skill")
-        verbose_name_plural = ("Skills")
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse("Skill_detail", kwargs={"pk": self.pk})
 
 class Project(models.Model):
        
@@ -145,3 +145,4 @@ class Testimonial(models.Model):
 
     def get_absolute_url(self):
         return reverse("Testimonial_detail", kwargs={"pk": self.pk})
+

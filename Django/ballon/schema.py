@@ -2,7 +2,11 @@ import graphene
 
 from graphene_django.types import DjangoObjectType
 
-from ballon.models import Resume, Main, Education, Testimonial, Address, Social, Work, Skill, Project  
+from ballon.models import Data, Resume, Main, Education, Testimonial, Address, Social, Work, Skill, Project  
+
+class DataType(DjangoObjectType):
+    class Meta:
+        model = Data
 
 class ResumeType(DjangoObjectType):
     class Meta:
@@ -43,17 +47,29 @@ class SocialType(DjangoObjectType):
 
 class Query(graphene.AbstractType):
     
-    all_main = graphene.List(MainType)
+    #all_main = graphene.List(MainType)
     all_resume = graphene.List(ResumeType)
+    all_data = graphene.List(DataType)
     
-    all_work = graphene.List(WorkType)
-    all_education = graphene.List(EducationType)
-    all_skill = graphene.List(SkillType)
-    all_testimonial = graphene.List(TestimonialType)
-    all_social = graphene.List(SocialType)
+    #all_work = graphene.List(WorkType)
+    #all_education = graphene.List(EducationType)
+    #all_skill = graphene.List(SkillType)
+    #all_testimonial = graphene.List(TestimonialType)
+    #all_social = graphene.List(SocialType)
 
     resume = graphene.Field(ResumeType, id=graphene.ID())
+    data = graphene.Field(DataType, id=graphene.ID())
+ 
+    def resolve_data(self, *args, **kwargs):
+        id = kwargs.get('id')
+        
+        if id is not None:
+            return Data.objects.get(pk=id)
 
+        return None
+    
+    def resolve_all_Data(self, args):
+        return Data.objects.all()
 
     def resolve_resume(self, *args, **kwargs):
         id = args.get('id')

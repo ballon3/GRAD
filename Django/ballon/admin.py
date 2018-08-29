@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ballon.models import Resume, Main, Education, Project, Work, Skill, Testimonial, Social, Address
+from ballon.models import Data, Resume, Main, Education, Project, Work, Skill, Testimonial, Social, Address
 
 #admin.site.register(Category)
 admin.site.register(Resume)
@@ -11,3 +11,4 @@ admin.site.register(Skill)
 admin.site.register(Social)
 admin.site.register(Testimonial)
 admin.site.register(Address)
+admin.site.register(Data)
