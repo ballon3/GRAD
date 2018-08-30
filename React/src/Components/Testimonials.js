@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
+import gql from "graphql-tag";
+import { graphql } from 'react-apollo';
+
+const MainQuery = gql`
+  {
+    pkg(id: 1) {
+      testimonials{
+        text
+        user
+      }
+    }
+  }
+
+`;
+
+
+
 
 
 class Testimonials extends Component {
   render() {
-    if(this.props.data){
-      var testimonials = this.props.data.testimonials.map(function(testimonial){
+    var x = this.props.data.pkg;
+    console.log(x)
+
+    if(this.props.data.pkg){
+      var testimonials = x.testimonials.map(function(testimonial){
         return <li key={testimonial.user}>
            <blockquote>
               <p>{testimonial.text}
@@ -33,4 +53,7 @@ class Testimonials extends Component {
   }
 }
 
-export default Testimonials;
+const TestimonialswData = graphql(MainQuery)(Testimonials);
+
+
+export default TestimonialswData;

@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
+import gql from "graphql-tag";
+import { graphql } from 'react-apollo';
+
+
+const MainQuery = gql`
+  {
+    pkg(id: 1) {
+      portfolio{
+        title
+        description
+        category
+        tags
+        url
+        modal
+
+      }
+      
+    }
+  }
+`;
+
 
 
 class Portfolio extends Component {
   render() {
-    if(this.props.data){
-      var portfolio = this.props.data.projects.map(function(project){        
-        var imageUrl = 'images/portfolio/'+ project.image;
-        return <div key={project.title} className="columns portfolio-item">
+    var x = this.props.data.pkg;
+    console.log(x)
+
+    if(this.props.data.pkg){
+      var portfolios = x.portfolio.map(function(portfolio){        
+        return <div key={portfolio.title} className="columns portfolio-item">
            <div className="item-wrap">
-              <a href={project.modal} title="">
-                 <img alt="" src={imageUrl} />
+              <a href={portfolio.modal} title="">
+              <h5>{portfolio.title}</h5>
+              <p>{portfolio.category}</p>
                  <div className="overlay">
                     <div className="portfolio-item-meta">
-                   <h5>{project.title}</h5>
-                       <p>{project.category}</p>
+                      <h5>{portfolio.title}</h5>
+                       <p>{portfolio.category}</p>
                 </div>
                  </div>
                  
@@ -29,7 +53,7 @@ class Portfolio extends Component {
          <div className="twelve columns collapsed">
             <h1>Check Out Some of My Works.</h1>
             <div id="portfolio-wrapper" className="bgrid-quarters s-bgrid-thirds cf">
-          	   {portfolio}
+          	   {portfolios}
             </div>
          </div>
       </div>
@@ -38,4 +62,7 @@ class Portfolio extends Component {
   }
 }
 
-export default Portfolio;
+
+const PortfoliowData = graphql(MainQuery)(Portfolio);
+
+export default PortfoliowData;

@@ -72,7 +72,7 @@ class Query(graphene.AbstractType):
         return Pkg.objects.all()
 
     def resolve_resume(self, *args, **kwargs):
-        id = args.get('id')
+        id = kwargs.get('id')
         
         if id is not None:
             return Resume.objects.get(pk=id)
